@@ -1,0 +1,7 @@
+#qiniu:
+qiniu.access-key = your accesskey
+qiniu.secret-key = your secretkey
+qiniu.bucket = bucket name
+qiniu.prefix = 訪問域名
+
+
