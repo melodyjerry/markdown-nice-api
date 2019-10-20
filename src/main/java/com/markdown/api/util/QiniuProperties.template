@@ -1,0 +1,26 @@
+package com.markdown.api.util;
+
+import com.qiniu.storage.Region;
+
+/**
+ * Company
+ * Created By   : Lr
+ * Created Date : 2019/10/16 10:24
+ * Description  : 七牛配置
+ * @author lirui
+ */
+public class QiniuProperties {
+
+    public static final String ACCESS_KEY = "";
+
+    public static final String SECRET_KEY = "";
+
+    public static final String BUCKET = "";
+
+    public static final String QINIUIMAGEDOMAIN = "";
+
+    public static final Region REGION = "";
+
+    //static final String prefix = "";
+
+}

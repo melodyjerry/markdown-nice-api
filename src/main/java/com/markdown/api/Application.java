@@ -11,11 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author      :lr
  */
 @SpringBootApplication
-public class MarkdownNiceApiApplication {
+public class Application {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(MarkdownNiceApiApplication.class, args);
+		SpringApplication.run(Application.class, args);
 
 	}
 

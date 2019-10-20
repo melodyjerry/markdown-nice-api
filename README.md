@@ -20,3 +20,7 @@ $ java -jar target/demo.jar
 
 http://localhost:8080/swagger-ui.html
 
+## 配置七牛云
+
+将QiniuProperties.template文件改为.java文件，并将自己的七牛云配置信息填入相应的位置
+

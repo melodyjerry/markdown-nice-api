@@ -1,28 +1,22 @@
 package com.markdown.api.entity;
 
 import com.google.gson.Gson;
-import com.qiniu.common.Zone;
+import com.markdown.api.util.QiniuProperties;
 import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(com.markdown.api.entity.QiniuProperties.class)
 class QiniuFileConfig {
-
-    @Autowired
-    private com.markdown.api.entity.QiniuProperties qiniuProperties;
 
     /**
      * 華東機房,配置自己空間所在的區域
      */
     @Bean
     public com.qiniu.storage.Configuration qiniuConfig() {
-        return new com.qiniu.storage.Configuration(Zone.zone2());
+        return new com.qiniu.storage.Configuration(QiniuProperties.REGION);
     }
 
     /**
@@ -35,11 +29,10 @@ class QiniuFileConfig {
 
     /**
      * 認證信息實例
-     * @return
      */
     @Bean
     public Auth auth() {
-        return Auth.create(qiniuProperties.getAccessKey(), qiniuProperties.getSecretKey());
+        return Auth.create(QiniuProperties.ACCESS_KEY, QiniuProperties.SECRET_KEY);
     }
 
     /**
