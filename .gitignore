@@ -31,3 +31,5 @@ hs_err_pid*
 target
 
 QiniuProperties.java
+
+application.properties

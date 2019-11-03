@@ -1,7 +1,12 @@
 package com.markdown.api;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.context.annotation.Bean;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * Company
@@ -20,3 +25,17 @@ public class Application {
 	}
 
 }
+
+@MapperScan("com.markdown.api.mapper")
+@SpringBootApplication
+class MybatisAnnotationApplication {
+
+	public static void main(String[] args) {
+
+		SpringApplication.run(MybatisAnnotationApplication.class, args);
+
+	}
+}
+
+
+
