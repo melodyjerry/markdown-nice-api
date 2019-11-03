@@ -4,19 +4,19 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @author lirui
+ */
 @Data
-public class User {
+public class UserTheme {
 
     private int id;
 
-    private String githubId;
+    private int useId;
 
-    private String wechat;
-
-    private String wechatPlatform;
+    private int themeId;
 
     private Date createTime;
 
     private Date updateTime;
-
 }

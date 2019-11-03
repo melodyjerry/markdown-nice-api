@@ -2,6 +2,7 @@ package com.markdown.api.mapper;
 
 import com.markdown.api.entity.User;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
@@ -9,15 +10,16 @@ import java.util.List;
 /**
  * @author lirui
  */
+@Component
 public interface UserMapper {
 
     @Select("SELECT * FROM user")
     @Results({
-            @Result(property = "id",  column = "id", javaType = int.class),
-            @Result(property = "githubId",  column = "github_id", javaType = String.class),
-            @Result(property = "wechat",  column = "wechat", javaType = String.class),
-            @Result(property = "wechatPlatform",  column = "wechat_platform", javaType = String.class),
-            @Result(property = "createTime",  column = "create_time", javaType = Date.class),
+            @Result(property = "id", column = "id", javaType = int.class),
+            @Result(property = "githubId", column = "github_id", javaType = String.class),
+            @Result(property = "wechat", column = "wechat", javaType = String.class),
+            @Result(property = "wechatPlatform", column = "wechat_platform", javaType = String.class),
+            @Result(property = "createTime", column = "create_time", javaType = Date.class),
             @Result(property = "updateTime", column = "update_time", javaType = Date.class)
     })
     /**
@@ -28,11 +30,11 @@ public interface UserMapper {
 
     @Select("SELECT * FROM user WHERE id = #{id}")
     @Results({
-            @Result(property = "id",  column = "id", javaType = int.class),
-            @Result(property = "githubId",  column = "github_id", javaType = String.class),
-            @Result(property = "wechat",  column = "wechat", javaType = String.class),
-            @Result(property = "wechatPlatform",  column = "wechat_platform", javaType = String.class),
-            @Result(property = "createTime",  column = "create_time", javaType = Date.class),
+            @Result(property = "id", column = "id", javaType = int.class),
+            @Result(property = "githubId", column = "github_id", javaType = String.class),
+            @Result(property = "wechat", column = "wechat", javaType = String.class),
+            @Result(property = "wechatPlatform", column = "wechat_platform", javaType = String.class),
+            @Result(property = "createTime", column = "create_time", javaType = Date.class),
             @Result(property = "updateTime", column = "update_time", javaType = Date.class)
     })
     /**

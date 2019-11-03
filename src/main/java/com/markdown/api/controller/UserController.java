@@ -1,11 +1,13 @@
 package com.markdown.api.controller;
 
 import com.markdown.api.entity.User;
-import com.markdown.api.mapper.UserMapper;
-import com.markdown.api.service.IUserService;
+import com.markdown.api.service.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.List;
@@ -17,11 +19,11 @@ import java.util.List;
 @EnableSwagger2
 @Api(value = "user", tags = "userOperating")
 @RequestMapping("/user")
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @GetMapping("users")
     public List<User> userQuery() {

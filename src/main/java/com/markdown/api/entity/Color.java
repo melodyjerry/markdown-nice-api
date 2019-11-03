@@ -10,17 +10,18 @@ import java.util.Date;
 @Data
 public class Color {
 
-    private int id;
+  private int id;
 
-    private int theme_id;
+  private int themeId;
 
-    private String css;
+  private String css;
 
-    private String long_pic;
+  private String longPic;
 
-    private String author;
+  private String author;
 
-    private Date create_time;
+  private Date createTime;
 
-    private Date update_time;
+  private Date updateTime;
+
 }

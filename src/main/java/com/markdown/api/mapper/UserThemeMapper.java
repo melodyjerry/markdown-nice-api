@@ -2,6 +2,9 @@ package com.markdown.api.mapper;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author lirui
+ */
 @Component
-public interface ThemeMapper {
+public interface UserThemeMapper {
 }

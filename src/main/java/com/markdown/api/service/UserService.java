@@ -7,13 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author lirui
+ */
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserService{
 
     @Autowired
     private UserMapper userMapper;
 
-    @Override
     public List<User> userQuery() {
         return userMapper.getAll();
     }
