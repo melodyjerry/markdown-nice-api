@@ -12,7 +12,7 @@ public class UserTheme {
 
     private int id;
 
-    private int useId;
+    private int userId;
 
     private int themeId;
 

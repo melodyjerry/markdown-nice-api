@@ -1,10 +1,20 @@
 package com.markdown.api.mapper;
 
-import org.springframework.stereotype.Component;
+import com.markdown.api.entity.UserTheme;
+import org.apache.ibatis.annotations.*;
+import java.util.List;
 
 /**
  * @author lirui
  */
-@Component
+@Mapper
 public interface UserThemeMapper {
+
+    List<UserTheme> getAll();
+
+    UserTheme getOne(Integer id);
+
+    void insert(UserTheme userTheme);
+
+    void update(UserTheme userTheme);
 }

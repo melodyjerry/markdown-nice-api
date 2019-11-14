@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.markdown.api.mapper.UserThemeMapper">
+
+    <resultMap id="BaseResultMap" type="com.markdown.api.entity.UserTheme">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="themeId" column="theme_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from user_theme where 1=1
+        <if test="userId!=null">
+            and user_id=#{userId}
+        </if>
+        <if test="themeId!=null">
+            and theme_id=#{themeId}
+        </if>
+    </select>
+
+    <select id="getOne" resultMap="BaseResultMap">
+        select * from user_theme
+        <where>
+            <if test="id!=null">
+                id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.markdown.api.entity.UserTheme">
+        insert into user_theme (user_id, theme_id)
+        values (#{userId,jdbcType=INTEGER}, #{themeId,jdbcType=INTEGER})
+    </insert>
+
+    <update id="update" parameterType="com.markdown.api.entity.UserTheme">
+        UPDATE user_theme
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="userId!=null">
+                user_id=#{userId}
+            </if>
+            <if test="themeId!=null">
+                , theme_id=#{themeId}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

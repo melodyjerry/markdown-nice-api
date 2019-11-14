@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.markdown.api.mapper.ThemeMapper">
+
+    <resultMap id="BaseResultMap" type="com.markdown.api.entity.Theme">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="englishName" column="english_name" jdbcType="VARCHAR"/>
+        <result property="screenshot" column="screenshot" jdbcType="VARCHAR"/>
+        <result property="qrCode" column="qr_code" jdbcType="VARCHAR"/>
+        <result property="author" column="author" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from theme where 1=1
+        <if test="name!=null and name!=''">
+            and name=#{name}
+        </if>
+        <if test="englishName!=null and englishName!=''">
+            and english_name=#{englishName}
+        </if>
+        <if test="screenshot!=null and screenshot!=''">
+            and screenshot=#{screenshot}
+        </if>
+        <if test="author!=null and author!=''">
+            and author=#{author}
+        </if>
+        <if test="qrCode!=null and qrCode!=''">
+            and qr_code=#{qrCode}
+        </if>
+        <if test="description!=null and description!=''">
+            and description=#{description}
+        </if>
+    </select>
+
+    <select id="getOne" resultMap="BaseResultMap">
+        select * from theme
+        <where>
+            <if test="id != null">
+                id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.markdown.api.entity.Theme">
+        insert into theme (name, english_name, screenshot, author, qr_code, description)
+        values (#{name,jdbcType=INTEGER}, #{englishName,jdbcType=VARCHAR}, #{screenshot,jdbcType=VARCHAR},
+        #{author,jdbcType=VARCHAR},#{qrCode,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.markdown.api.entity.Theme">
+        UPDATE theme
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="name!=null and name!=''">
+                name=#{name}
+            </if>
+            <if test="englishName!=null and englishName!=''">
+                , english_name=#{englishName}
+            </if>
+            <if test="screenshot!=null and screenshot!=''">
+                , screenshot=#{screenshot}
+            </if>
+            <if test="author!=null and author!=''">
+                , author=#{author}
+            </if>
+            <if test="qrCode!=null and qrCode!=''">
+                , qr_code=#{qrCode}
+            </if>
+            <if test="description!=null and description!=''">
+                , description=#{description}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

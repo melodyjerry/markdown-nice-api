@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.markdown.api.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.markdown.api.entity.User">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="githubId" column="github_id" jdbcType="INTEGER"/>
+        <result property="wechat" column="wechat" jdbcType="VARCHAR"/>
+        <result property="wechatPlatform" column="wechat_platform" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from user where 1=1
+        <if test="githubId!=null">
+            and github_id=#{githubId}
+        </if>
+        <if test="wechat!=null and wechat!=''">
+            and wechat=#{wechat}
+        </if>
+        <if test="wechatPlatform!=null and wechatPlatform!=''">
+            and wechat_platform=#{wechatPlatform}
+        </if>
+    </select>
+
+    <select id="getOne" resultMap="BaseResultMap">
+        select * from user
+        <where>
+            <if test="id != null">
+                id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.markdown.api.entity.User">
+        insert into user (github_id, wechat, wechat_platform)
+        values (#{githubId,jdbcType=INTEGER}, #{wechat,jdbcType=VARCHAR}, #{wechatPlatform,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.markdown.api.entity.User">
+        UPDATE user
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="githubId!=null">
+                github_id=#{githubId}
+            </if>
+            <if test="wechat!=null and wechat!=''">
+                , wechat=#{wechat}
+            </if>
+            <if test="wechatPlatform!=null and wechatPlatform!=''">
+                , wechat_platform=#{wechatPlatform}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

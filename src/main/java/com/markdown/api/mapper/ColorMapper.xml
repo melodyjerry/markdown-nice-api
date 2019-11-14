@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.markdown.api.mapper.ColorMapper">
+
+    <resultMap id="BaseResultMap" type="com.markdown.api.entity.Color">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="themeId" column="theme_id" jdbcType="INTEGER"/>
+        <result property="css" column="css" jdbcType="VARCHAR"/>
+        <result property="longPic" column="long_pic" jdbcType="VARCHAR"/>
+        <result property="author" column="author" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from color where 1=1
+        <if test="themeId!=null">
+            and theme_id=#{themeId}
+        </if>
+        <if test="css!=null and css!=''">
+            and css=#{css}
+        </if>
+        <if test="longPic!=null and longPic!=''">
+            and long_pic=#{longPic}
+        </if>
+        <if test="author!=null and author!=''">
+            and author=#{author}
+        </if>
+    </select>
+
+    <select id="selectOne" resultMap="BaseResultMap">
+        select * from color
+        <where>
+            <if test="id != null">
+                id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.markdown.api.entity.Color">
+        insert into color (theme_id, css, long_pic,author)
+        values (#{themeId,jdbcType=INTEGER}, #{css,jdbcType=VARCHAR}, #{longPic,jdbcType=VARCHAR},#{author,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.markdown.api.entity.Color">
+        UPDATE color
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="themeId != null">
+                theme_id = #{themeId}
+            </if>
+            <if test="css != null and css != ''">
+                , css = #{css}
+            </if>
+            <if test="author != null and author != ''">
+                , author = #{author}
+            </if>
+            <if test="longPic != null and longPic != ''">
+                , long_pic = #{longPic}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>
