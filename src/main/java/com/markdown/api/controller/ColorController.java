@@ -1,10 +1,8 @@
 package com.markdown.api.controller;
 
 import com.markdown.api.entity.Color;
-import com.markdown.api.mapper.ColorMapper;
 import com.markdown.api.service.ColorService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -25,8 +23,8 @@ public class ColorController {
         return colorService.getAll();
     }
 
-    @GetMapping("colors/id")
-    public Color getOne(Integer id) {
+    @GetMapping("colors/{id}")
+    public Color getOne(@PathVariable Integer id) {
         return colorService.getOne(id);
     }
 

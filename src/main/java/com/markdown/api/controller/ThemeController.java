@@ -1,5 +1,4 @@
 package com.markdown.api.controller;
-
 import com.markdown.api.entity.Theme;
 import com.markdown.api.service.ThemeService;
 import io.swagger.annotations.Api;
@@ -26,8 +25,8 @@ public class ThemeController {
         return themeService.getAll();
     }
 
-    @GetMapping("themes/id")
-    public Theme themeQueryOne(Integer id) {
+    @GetMapping("themes/{id}")
+    public Theme themeQueryOne(@PathVariable Integer id) {
         return  themeService.getOne(id);
     }
 
@@ -36,7 +35,7 @@ public class ThemeController {
         themeService.insert(theme);
     }
 
-    @PutMapping("themes/id")
+    @PutMapping("themes")
     public void themeUpdate(Theme theme) {
         themeService.update(theme);
     }

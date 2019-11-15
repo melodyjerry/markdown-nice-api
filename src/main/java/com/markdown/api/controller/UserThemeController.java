@@ -1,12 +1,10 @@
 package com.markdown.api.controller;
-
 import com.markdown.api.entity.UserTheme;
 import com.markdown.api.service.UserThemeService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import java.util.List;
 
 @RestController
@@ -23,8 +21,8 @@ public class UserThemeController {
         return userThemeService.getAll();
     }
 
-    @GetMapping("userThemes/id")
-    public UserTheme getOne(Integer id) {
+    @GetMapping("userThemes/{id}")
+    public UserTheme getOne(@PathVariable Integer id) {
         return userThemeService.getOne(id);
     }
 
@@ -33,7 +31,7 @@ public class UserThemeController {
         userThemeService.insert(userTheme);
     }
 
-    @PutMapping("userThemes/id")
+    @PutMapping("userThemes")
     public void update(UserTheme userTheme) {
         userThemeService.update(userTheme);
     }

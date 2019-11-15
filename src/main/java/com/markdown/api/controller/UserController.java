@@ -1,10 +1,12 @@
 package com.markdown.api.controller;
+
 import com.markdown.api.entity.User;
 import com.markdown.api.service.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,8 +31,8 @@ public class UserController {
         return users;
     }
 
-    @GetMapping("users/id")
-    public User userQueryOne(int id) {
+    @GetMapping("users/{id}")
+    public User userQueryOne(@PathVariable Integer id) {
         return userService.getOne(id);
     }
 
@@ -39,7 +41,7 @@ public class UserController {
         userService.insert(user);
     }
 
-    @PutMapping("users/id")
+    @PutMapping("users")
     public void userUpdate(User user) {
         userService.update(user);
     }
