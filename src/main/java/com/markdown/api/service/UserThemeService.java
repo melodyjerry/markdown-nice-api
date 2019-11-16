@@ -21,7 +21,7 @@ public class UserThemeService {
     }
 
     public UserTheme getOne(Integer id) {
-        return userThemeMapper.getOne();
+        return userThemeMapper.getOne(id);
     }
 
     public void insert(UserTheme userTheme) {
