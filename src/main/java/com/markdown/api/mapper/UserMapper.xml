@@ -43,7 +43,7 @@
     <update id="update" parameterType="com.markdown.api.entity.User">
         UPDATE user
         <trim prefix="SET" prefixOverrides=",">
-            <if test="githubId!=null">
+            <if test="githubId!=null and githubId!=''">
                 github_id=#{githubId}
             </if>
             <if test="wechat!=null and wechat!=''">

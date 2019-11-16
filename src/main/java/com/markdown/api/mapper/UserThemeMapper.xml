@@ -39,10 +39,10 @@
     <update id="update" parameterType="com.markdown.api.entity.UserTheme">
         UPDATE user_theme
         <trim prefix="SET" prefixOverrides=",">
-            <if test="userId!=null">
+            <if test="userId!=null and userId!=''">
                 user_id=#{userId}
             </if>
-            <if test="themeId!=null">
+            <if test="themeId!=null and themeId!=''">
                 , theme_id=#{themeId}
             </if>
         </trim>

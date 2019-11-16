@@ -47,7 +47,7 @@
     <update id="update" parameterType="com.markdown.api.entity.Color">
         UPDATE color
         <trim prefix="SET" prefixOverrides=",">
-            <if test="themeId != null">
+            <if test="themeId != null and themeId != ''">
                 theme_id = #{themeId}
             </if>
             <if test="css != null and css != ''">
