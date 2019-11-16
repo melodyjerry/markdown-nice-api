@@ -16,7 +16,7 @@ jobs:
         port: ${{ secrets.PORT }}
         command_timeout: 5m
         script: |
-          cd /markdown-nice-api
+          cd /home/mdnice/markdown-nice-api
           git pull origin master
           mvn clean package
           java -jar target/demo.jar
