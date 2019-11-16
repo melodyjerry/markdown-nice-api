@@ -16,6 +16,7 @@ jobs:
         port: ${{ secrets.PORT }}
         command_timeout: 5m
         script: |
+          sudo fuser -k -n tcp 8080
           cd /home/mdnice/markdown-nice-api
           git pull origin master
           mvn clean package
