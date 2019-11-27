@@ -13,7 +13,9 @@ markdown-nice和markdown-resume的后台系统
 $ mvn spring-boot:run
 // 构建
 $ mvn clean package 
-$ java -jar target/demo.jar 
+$ java -jar target/demo.jar
+// 后台启动
+$ nohup java -jar demo.jar >log.txt &
 ```
 
 ### 文档地址

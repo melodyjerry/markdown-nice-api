@@ -9,6 +9,12 @@ public class User {
 
     private int id;
 
+    private String username;
+
+    private String password;
+
+    private String avatar;
+
     private String githubId;
 
     private String wechat;

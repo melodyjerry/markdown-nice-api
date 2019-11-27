@@ -6,7 +6,10 @@
 
     <resultMap id="BaseResultMap" type="com.markdown.api.entity.User">
         <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="githubId" column="github_id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="githubId" column="github_id" jdbcType="VARCHAR"/>
         <result property="wechat" column="wechat" jdbcType="VARCHAR"/>
         <result property="wechatPlatform" column="wechat_platform" jdbcType="VARCHAR"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
@@ -18,6 +21,15 @@
         <if test="githubId!=null">
             and github_id=#{githubId}
         </if>
+        <if test="username!=null and username!=''">
+            and username=#{username}
+        </if>
+        <if test="password!=null and password!=''">
+            and password=#{password}
+        </if>
+        <if test="avatar!=null and avatar!=''">
+            and avatar=#{avatar}
+        </if>
         <if test="wechat!=null and wechat!=''">
             and wechat=#{wechat}
         </if>
@@ -27,22 +39,60 @@
     </select>
 
     <select id="getOne" resultMap="BaseResultMap">
+        select * from user where 1=1
+        <if test="id != null">
+            id=#{id}
+        </if>
+    </select>
+
+    <select id="getOneByParam" resultMap="BaseResultMap">
+        select * from user where 1=1
+        <if test="githubId!=null and githubId!=''">
+            and github_id=#{githubId}
+        </if>
+        <if test="username!=null and username!=''">
+            and username=#{username}
+        </if>
+        <if test="password!=null and password!=''">
+            and password=#{password}
+        </if>
+        <if test="avatar!=null and avatar!=''">
+            and avatar=#{avatar}
+        </if>
+        <if test="wechat!=null and wechat!=''">
+            and wechat=#{wechat}
+        </if>
+        <if test="wechatPlatform!=null and wechatPlatform!=''">
+            and wechat_platform=#{wechatPlatform}
+        </if>
+    </select>
+
+    <select id="getOneByGitid" resultMap="BaseResultMap">
         select * from user
         <where>
-            <if test="id != null">
-                id=#{id}
+            <if test="githubId!=null and githubId!=''">
+                github_id=#{githubId}
             </if>
         </where>
     </select>
 
     <insert id="insert" parameterType="com.markdown.api.entity.User">
-        insert into user (github_id, wechat, wechat_platform)
-        values (#{githubId,jdbcType=INTEGER}, #{wechat,jdbcType=VARCHAR}, #{wechatPlatform,jdbcType=VARCHAR})
+        insert into user (username, password, avatar, github_id, wechat, wechat_platform)
+        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{githubId,jdbcType=INTEGER}, #{wechat,jdbcType=VARCHAR}, #{wechatPlatform,jdbcType=VARCHAR})
     </insert>
 
     <update id="update" parameterType="com.markdown.api.entity.User">
         UPDATE user
         <trim prefix="SET" prefixOverrides=",">
+            <if test="username!=null and username!=''">
+                username=#{username}
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password}
+            </if>
+            <if test="avatar!=null and avatar!=''">
+                avatar=#{avatar}
+            </if>
             <if test="githubId!=null and githubId!=''">
                 github_id=#{githubId}
             </if>

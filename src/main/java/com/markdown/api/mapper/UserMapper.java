@@ -1,7 +1,9 @@
 package com.markdown.api.mapper;
 
 import com.markdown.api.entity.User;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -12,11 +14,17 @@ public interface UserMapper {
 
     List<User> getAll();
 
-    User getOne(@Param("id") Integer id);
+    User getOne(Integer id);
+
+    User getOneByParam(User user);
+
+    User getOneByGitid(@Param("githubId") String githubId);
 
     void insert(User user);
 
     void update(User user);
 
     void delete(Integer id);
+
+
 }

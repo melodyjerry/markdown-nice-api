@@ -4,6 +4,14 @@ spring.datasource.url=jdbc:mysql://localhost:8080/database?serverTimezone=UTC&us
 spring.datasource.username=
 spring.datasource.password=
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
 #限制文件上传大小
 spring.servlet.multipart.max-file-size=5MB
+#JWT配置
+audience.clientId=
+audience.base64Secret=
+audience.name=
+audience.expiresSecond=
+#第三方oath配置(github)
+authconfigure.clientId=
+authconfigure.clientSecret=
+authconfigure.redirectUri=
