@@ -1,5 +1,4 @@
-name: remote ssh command
-
+name: main
 on: 
   push:
     branches: 
