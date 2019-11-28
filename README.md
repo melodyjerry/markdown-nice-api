@@ -29,4 +29,3 @@ http://localhost:8080/swagger-ui.html
 ### 后台请求遵循 RESTful API 原则
 
 具体参考[RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
-
