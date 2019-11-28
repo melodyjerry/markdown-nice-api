@@ -1,4 +1,4 @@
-name: main
+name: remote ssh command
 on: 
   push:
     branches: 
@@ -16,7 +16,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        command_timeout: 5m
+        command_timeout: 3m
         script: |
           sudo fuser -k -n tcp 8080
           cd /home/mdnice/markdown-nice-api
