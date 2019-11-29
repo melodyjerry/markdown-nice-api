@@ -46,25 +46,12 @@
     </select>
 
     <select id="getOneByParam" resultMap="BaseResultMap">
-        select * from user where 1=1
-        <if test="githubId!=null and githubId!=''">
-            and github_id=#{githubId}
-        </if>
-        <if test="username!=null and username!=''">
-            and username=#{username}
-        </if>
-        <if test="password!=null and password!=''">
-            and password=#{password}
-        </if>
-        <if test="avatar!=null and avatar!=''">
-            and avatar=#{avatar}
-        </if>
-        <if test="wechat!=null and wechat!=''">
-            and wechat=#{wechat}
-        </if>
-        <if test="wechatPlatform!=null and wechatPlatform!=''">
-            and wechat_platform=#{wechatPlatform}
-        </if>
+        select * from user
+        <where>
+            <if test="username!=null and username!=''">
+                and username=#{username}
+            </if>
+        </where>
     </select>
 
     <select id="getOneByGitid" resultMap="BaseResultMap">

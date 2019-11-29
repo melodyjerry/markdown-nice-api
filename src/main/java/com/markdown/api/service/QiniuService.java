@@ -13,6 +13,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Company      :
@@ -42,13 +44,17 @@ public class QiniuService implements InitializingBean {
     /**
      * 以流的形式上傳
      */
-    public PicVO uploadFile(InputStream inputStream) throws QiniuException {
+    public PicVO uploadFile(InputStream inputStream, String userId, String filename) throws QiniuException {
         PicVO picVO = new PicVO();
-        Response response = this.uploadManager.put(inputStream, null, getUploadToken(), null, null);
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+        String date = sdf.format(new Date());
+        //如不配置key值则默认文件名为putRet.hash
+        String key = userId + "/" + date + "/" + filename;
+        Response response = this.uploadManager.put(inputStream, key, getUploadToken(), null, null);
         int retry = 0;
         int retryMax = 3;
         while (response.needRetry() && retry < retryMax) {
-            response = this.uploadManager.put(inputStream, null, getUploadToken(), null, null);
+            response = this.uploadManager.put(inputStream, key, getUploadToken(), null, null);
             retry++;
         }
 
@@ -56,7 +62,7 @@ public class QiniuService implements InitializingBean {
 
         try {
             putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-            picVO.setUrl(QiniuProperties.QINIUIMAGEDOMAIN + "/" + putRet.hash);
+            picVO.setUrl(QiniuProperties.QINIUIMAGEDOMAIN + putRet.key);
         } catch (QiniuException ex) {
             Response r = ex.response;
             System.err.println(r.toString());

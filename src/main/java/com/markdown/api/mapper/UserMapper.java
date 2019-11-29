@@ -16,7 +16,7 @@ public interface UserMapper {
 
     User getOne(Integer id);
 
-    User getOneByParam(User user);
+    User getOneByParam(@Param("username") String username);
 
     User getOneByGitid(@Param("githubId") String githubId);
 

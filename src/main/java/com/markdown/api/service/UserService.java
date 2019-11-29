@@ -33,9 +33,7 @@ public class UserService {
     }
 
     public User findPersonByUsername(String username) {
-        User user = new User();
-        user.setUsername(username);
-        return userMapper.getOneByParam(user);
+        return userMapper.getOneByParam(username);
     }
 
     public User findPersonByGitid(String githubId) {

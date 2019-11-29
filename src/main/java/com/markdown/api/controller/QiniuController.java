@@ -1,12 +1,17 @@
 package com.markdown.api.controller;
 
+import com.markdown.api.annotation.JwtIgnore;
 import com.markdown.api.service.QiniuService;
+import com.markdown.api.util.Audience;
+import com.markdown.api.util.JwtTokenUtil;
 import com.markdown.api.vo.PicVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -27,9 +32,13 @@ import java.io.IOException;
 public class QiniuController {
     @Autowired
     private QiniuService qiniuService;
+    @Autowired
+    private Audience audience;
 
     @PostMapping("upload")
-    public PicVO uploadFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
-        return qiniuService.uploadFile(file.getInputStream());
+    public PicVO uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest response, String base64Security) throws IOException {
+        String userId = JwtTokenUtil.getUserId(response.getHeader("Authorization").substring(7), audience.getBase64Secret());
+        String filename = file.getOriginalFilename();
+        return qiniuService.uploadFile(file.getInputStream(), userId, filename);
     }
 }
