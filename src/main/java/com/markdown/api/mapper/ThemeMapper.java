@@ -2,7 +2,7 @@ package com.markdown.api.mapper;
 
 import java.util.List;
 
-import com.markdown.api.entity.Theme;
+import com.markdown.api.domain.ThemeDO;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,13 +14,13 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ThemeMapper {
 
-    List<Theme> getAll();
+    List<ThemeDO> getAll();
 
-    Theme getOne(@Param("id") Integer id);
+    ThemeDO getOne(@Param("id") Long id);
 
-    void insert(Theme theme);
+    void insert(ThemeDO theme);
 
-    void update(Theme theme);
+    void update(ThemeDO theme);
 
     void delete(Integer id);
 

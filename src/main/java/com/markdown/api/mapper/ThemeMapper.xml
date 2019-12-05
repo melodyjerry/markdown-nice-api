@@ -4,7 +4,7 @@
 
 <mapper namespace="com.markdown.api.mapper.ThemeMapper">
 
-    <resultMap id="BaseResultMap" type="com.markdown.api.entity.Theme">
+    <resultMap id="BaseResultMap" type="com.markdown.api.domain.ThemeDO">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="englishName" column="english_name" jdbcType="VARCHAR"/>
@@ -47,13 +47,13 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.markdown.api.entity.Theme">
+    <insert id="insert" parameterType="com.markdown.api.domain.ThemeDO">
         insert into theme (name, english_name, screenshot, author, qr_code, description)
         values (#{name,jdbcType=INTEGER}, #{englishName,jdbcType=VARCHAR}, #{screenshot,jdbcType=VARCHAR},
         #{author,jdbcType=VARCHAR},#{qrCode,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.markdown.api.entity.Theme">
+    <update id="update" parameterType="com.markdown.api.domain.ThemeDO">
         UPDATE theme
         <trim prefix="SET" prefixOverrides=",">
             <if test="name!=null and name!=''">

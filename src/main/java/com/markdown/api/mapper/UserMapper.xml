@@ -4,7 +4,7 @@
 
 <mapper namespace="com.markdown.api.mapper.UserMapper">
 
-    <resultMap id="BaseResultMap" type="com.markdown.api.entity.User">
+    <resultMap id="BaseResultMap" type="com.markdown.api.domain.UserDO">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
@@ -39,10 +39,12 @@
     </select>
 
     <select id="getOne" resultMap="BaseResultMap">
-        select * from user where 1=1
-        <if test="id != null">
-            id=#{id}
-        </if>
+        select * from user
+        <where>
+            <if test="id != null">
+                id=#{id}
+            </if>
+        </where>
     </select>
 
     <select id="getOneByParam" resultMap="BaseResultMap">
@@ -54,7 +56,7 @@
         </where>
     </select>
 
-    <select id="getOneByGitid" resultMap="BaseResultMap">
+    <select id="getOneByGitId" resultMap="BaseResultMap">
         select * from user
         <where>
             <if test="githubId!=null and githubId!=''">
@@ -63,12 +65,12 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.markdown.api.entity.User">
+    <insert id="insert" parameterType="com.markdown.api.domain.UserDO" useGeneratedKeys="true" keyProperty="id">
         insert into user (username, password, avatar, github_id, wechat, wechat_platform)
         values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{githubId,jdbcType=INTEGER}, #{wechat,jdbcType=VARCHAR}, #{wechatPlatform,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.markdown.api.entity.User">
+    <update id="update" parameterType="com.markdown.api.domain.UserDO">
         UPDATE user
         <trim prefix="SET" prefixOverrides=",">
             <if test="username!=null and username!=''">

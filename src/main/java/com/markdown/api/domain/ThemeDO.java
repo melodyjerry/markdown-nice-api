@@ -1,4 +1,4 @@
-package com.markdown.api.entity;
+package com.markdown.api.domain;
 
 import lombok.Data;
 
@@ -8,9 +8,9 @@ import java.util.Date;
  * @author lirui
  */
 @Data
-public class Theme {
+public class ThemeDO {
 
-    private int id;
+    private Long id;
 
     private String name;
 

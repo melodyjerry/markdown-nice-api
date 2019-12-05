@@ -1,9 +1,8 @@
 package com.markdown.api.mapper;
 
-import com.markdown.api.entity.Color;
+import com.markdown.api.domain.ColorDO;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Component;
-import java.util.Date;
+
 import java.util.List;
 
 /**
@@ -12,11 +11,11 @@ import java.util.List;
 @Mapper
 public interface ColorMapper {
 
-    List<Color> selectAll();
+    List<ColorDO> selectAll();
 
-    Color selectOne(@Param("id") Integer id);
+    ColorDO selectOne(@Param("id") Long id);
 
-    void insert(Color color);
+    void insert(ColorDO color);
 
-    void update(Color color);
+    void update(ColorDO color);
 }

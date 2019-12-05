@@ -6,6 +6,7 @@ import com.markdown.api.util.Audience;
 import com.markdown.api.util.JwtTokenUtil;
 import com.markdown.api.vo.PicVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +22,7 @@ import java.io.IOException;
  */
 @RestController
 @EnableSwagger2
-@Api(value = "qiniu", tags = "fileUpload")
+@Api(value = "qiniu", tags = "七牛云")
 @RequestMapping("/qiniu")
 //实现跨域注解
 //origin="*"代表所有域名都可访问
@@ -36,6 +37,7 @@ public class QiniuController {
     private Audience audience;
 
     @PostMapping("upload")
+    @ApiOperation(value = "图片上传接口")
     public PicVO uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest response, String base64Security) throws IOException {
         String userId = JwtTokenUtil.getUserId(response.getHeader("Authorization").substring(7), audience.getBase64Secret());
         String filename = file.getOriginalFilename();

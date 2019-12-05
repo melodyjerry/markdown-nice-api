@@ -4,7 +4,7 @@
 
 <mapper namespace="com.markdown.api.mapper.ColorMapper">
 
-    <resultMap id="BaseResultMap" type="com.markdown.api.entity.Color">
+    <resultMap id="BaseResultMap" type="com.markdown.api.domain.ColorDO">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="themeId" column="theme_id" jdbcType="INTEGER"/>
         <result property="css" column="css" jdbcType="VARCHAR"/>
@@ -39,12 +39,12 @@
         </where>
     </select>
 
-    <insert id="insert" parameterType="com.markdown.api.entity.Color">
+    <insert id="insert" parameterType="com.markdown.api.domain.ColorDO">
         insert into color (theme_id, css, long_pic,author)
         values (#{themeId,jdbcType=INTEGER}, #{css,jdbcType=VARCHAR}, #{longPic,jdbcType=VARCHAR},#{author,jdbcType=VARCHAR})
     </insert>
 
-    <update id="update" parameterType="com.markdown.api.entity.Color">
+    <update id="update" parameterType="com.markdown.api.domain.ColorDO">
         UPDATE color
         <trim prefix="SET" prefixOverrides=",">
             <if test="themeId != null and themeId != ''">

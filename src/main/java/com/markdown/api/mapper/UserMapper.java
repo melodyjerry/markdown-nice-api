@@ -1,6 +1,6 @@
 package com.markdown.api.mapper;
 
-import com.markdown.api.entity.User;
+import com.markdown.api.domain.UserDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,19 +12,19 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    List<User> getAll();
+    List<UserDO> getAll();
 
-    User getOne(Integer id);
+    UserDO getOne(@Param("id") Long id);
 
-    User getOneByParam(@Param("username") String username);
+    UserDO getOneByUsername(@Param("username") String username);
 
-    User getOneByGitid(@Param("githubId") String githubId);
+    UserDO getOneByGitId(@Param("githubId") String githubId);
 
-    void insert(User user);
+    Long insert(UserDO userDO);
 
-    void update(User user);
+    void update(UserDO user);
 
-    void delete(Integer id);
+    void delete(Long id);
 
 
 }

@@ -1,10 +1,10 @@
 package com.markdown.api.service;
 
-import com.markdown.api.entity.Color;
+import com.markdown.api.domain.ColorDO;
 import com.markdown.api.mapper.ColorMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,22 +13,22 @@ import java.util.List;
 @Service
 public class ColorService {
 
-    @Autowired
+    @Resource
     private ColorMapper colorMapper;
 
-    public List<Color> getAll() {
+    public List<ColorDO> getAll() {
         return colorMapper.selectAll();
     }
 
-    public Color getOne(Integer id) {
+    public ColorDO getOne(Long id) {
         return colorMapper.selectOne(id);
     }
 
-    public void insert(Color color) {
+    public void insert(ColorDO color) {
         colorMapper.insert(color);
     }
 
-    public void update(Color color) {
+    public void update(ColorDO color) {
         colorMapper.update(color);
     }
 

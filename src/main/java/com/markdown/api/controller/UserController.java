@@ -1,16 +1,14 @@
 package com.markdown.api.controller;
 
-import com.markdown.api.entity.User;
+import com.markdown.api.domain.UserDO;
+import com.markdown.api.mapper.UserMapper;
 import com.markdown.api.service.UserService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.servlet.ServletException;
-import java.util.Date;
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,31 +16,34 @@ import java.util.List;
  */
 @RestController
 @EnableSwagger2
-@Api(value = "user", tags = "userOperating")
+@Api(value = "user", tags = "用户模块")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    @Resource
+    private UserMapper userMapper;
+
     @GetMapping("users")
-    public List<User> userQuery() {
-        List<User> users = userService.userQuery();
+    public List<UserDO> userQuery() {
+        List<UserDO> users = userService.userQuery();
         return users;
     }
 
     @GetMapping("users/{id}")
-    public User userQueryOne(@PathVariable Integer id) {
+    public UserDO userQueryOne(@PathVariable Long id) {
         return userService.getOne(id);
     }
 
     @PostMapping("users")
-    public void userInsert(User user) {
-        userService.insert(user);
+    public void userInsert(UserDO user) {
+        userMapper.insert(user);
     }
 
     @PutMapping("users")
-    public void userUpdate(User user) {
+    public void userUpdate(UserDO user) {
         userService.update(user);
     }
 

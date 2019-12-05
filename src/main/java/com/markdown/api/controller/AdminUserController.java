@@ -1,62 +1,46 @@
 package com.markdown.api.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.markdown.api.annotation.JwtIgnore;
-import com.markdown.api.entity.User;
+import com.markdown.api.dto.RegisterDTO;
+import com.markdown.api.dto.UserDTO;
 import com.markdown.api.response.Result;
-import com.markdown.api.service.UserService;
-import com.markdown.api.util.Audience;
-import com.markdown.api.util.JwtTokenUtil;
+import com.markdown.api.service.AdminUserService;
+import com.markdown.api.vo.OauthVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.UUID;
 
 /**
  * @author lirui
  */
 @Slf4j
 @EnableSwagger2
-@Api(value = "userlogin", tags = "login")
+@Api(value = "userlogin", tags = "登录注册入口")
 @RestController
 public class AdminUserController {
-    @Autowired
-    private Audience audience;
 
-    @Autowired
-    private UserService userService;
+    @Resource
+    private AdminUserService adminUserService;
 
     @JwtIgnore
-    @PostMapping("/login")
-    public Result adminLogin(HttpServletResponse response, String username, String password) throws IOException {
-        // 这里模拟测试, 默认登录成功，返回用户ID和角色信息
-        String role = "user";
-        User user = new User();
-        if(userService.findPersonByUsername(username) == null) {
-            user.setUsername(username);
-            user.setPassword(password);
-            userService.insert(user);
-        }
-        if(!password.equals(userService.findPersonByUsername(username).getPassword())) {
-            return Result.FAIL("登录失败");
-        }
+    @PostMapping("/signIn")
+    @ApiOperation(value = "登录接口")
+    public Result<OauthVO> adminLogin(HttpServletResponse response, @RequestBody UserDTO userDTO) {
+        return adminUserService.login(response, userDTO);
+    }
 
-        String userId = String.valueOf(userService.findPersonByUsername(username).getId());
-        // 创建token
-        String token = JwtTokenUtil.createJWT(password, userId, role, audience);
-        log.info("### 登录成功, token={} ###", token);
-        // 将token放在响应头
-        response.setHeader(JwtTokenUtil.AUTH_HEADER_KEY, JwtTokenUtil.TOKEN_PREFIX + token);
-        // 将token响应给客户端
-        JSONObject result = new JSONObject();
-        result.put("token", token);
-        return Result.SUCCESS(result);
+    @JwtIgnore
+    @PostMapping("/register")
+    @ApiOperation(value = "注册接口")
+    public Result register(@RequestBody RegisterDTO registerDTO) {
+        return Result.SUCCESS();
     }
 
 }

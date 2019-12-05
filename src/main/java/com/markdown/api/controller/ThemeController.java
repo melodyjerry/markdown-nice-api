@@ -1,7 +1,12 @@
 package com.markdown.api.controller;
-import com.markdown.api.entity.Theme;
+import com.markdown.api.domain.ThemeDO;
+import com.markdown.api.dto.UserThemeDTO;
+import com.markdown.api.response.Result;
 import com.markdown.api.service.ThemeService;
+import com.markdown.api.vo.ThemeDetailVO;
+import com.markdown.api.vo.ThemeVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -13,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @EnableSwagger2
-@Api(value = "theme", tags = "themeOperating")
+@Api(value = "theme", tags = "主题模块")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ThemeController {
 
@@ -21,22 +26,39 @@ public class ThemeController {
     private ThemeService themeService;
 
     @GetMapping("themes")
-    public List<Theme> themeQueryAll() {
-        return themeService.getAll();
+    @ApiOperation(value = "主题列表页接口")
+    public Result<List<ThemeVO>> themeQueryAll() {
+        //return themeService.getAll();
+        return null;
     }
 
     @GetMapping("themes/{id}")
-    public Theme themeQueryOne(@PathVariable Integer id) {
-        return  themeService.getOne(id);
+    @ApiOperation(value = "主题详情页接口")
+    public Result<ThemeDetailVO> themeQueryOne(@PathVariable Long id) {
+        //return  themeService.getOne(id);
+        return null;
+    }
+
+    @PostMapping("themes/{themeId}/users/{userId}")
+    @ApiOperation(value = "订阅接口")
+    public Result subscribe(@PathVariable Long themeId, @PathVariable Long userId) {
+        return Result.SUCCESS();
+    }
+
+    @GetMapping("themes/users/{userId}")
+    @ApiOperation(value = "编辑器顶端二级下拉菜单接口")
+    public Result<List<ThemeDetailVO>> queryThemeDetail(@PathVariable Long userId) {
+        return null;
     }
 
     @PostMapping("themes")
-    public void themeInsert(Theme theme) {
+    public void themeInsert(ThemeDO theme) {
         themeService.insert(theme);
     }
 
     @PutMapping("themes")
-    public void themeUpdate(Theme theme) {
+    public void themeUpdate(ThemeDO theme) {
         themeService.update(theme);
     }
+
 }

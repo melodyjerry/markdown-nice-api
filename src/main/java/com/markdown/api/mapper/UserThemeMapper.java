@@ -1,6 +1,6 @@
 package com.markdown.api.mapper;
 
-import com.markdown.api.entity.UserTheme;
+import com.markdown.api.domain.UserThemeDO;
 import org.apache.ibatis.annotations.*;
 import java.util.List;
 
@@ -10,11 +10,11 @@ import java.util.List;
 @Mapper
 public interface UserThemeMapper {
 
-    List<UserTheme> getAll();
+    List<UserThemeDO> getAll();
 
-    UserTheme getOne(Integer id);
+    UserThemeDO getOne(Long id);
 
-    void insert(UserTheme userTheme);
+    void insert(UserThemeDO userTheme);
 
-    void update(UserTheme userTheme);
+    void update(UserThemeDO userTheme);
 }

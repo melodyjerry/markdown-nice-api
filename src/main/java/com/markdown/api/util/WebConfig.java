@@ -17,7 +17,16 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //拦截路径可自行配置多个 可用 ，分隔开
-        registry.addInterceptor(new JwtInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new JwtInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/swagger-ui.html")
+                .excludePathPatterns("/swagger-resources/**")
+                .excludePathPatterns("/v2/**")
+                .excludePathPatterns("/error")
+                .excludePathPatterns("/webjars/**")
+                .excludePathPatterns("/")
+                .excludePathPatterns("/csrf");
+
     }
 
     /**

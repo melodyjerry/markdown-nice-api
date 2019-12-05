@@ -1,10 +1,10 @@
 package com.markdown.api.service;
 
-import com.markdown.api.entity.UserTheme;
+import com.markdown.api.domain.UserThemeDO;
 import com.markdown.api.mapper.UserThemeMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,22 +13,22 @@ import java.util.List;
 @Service
 public class UserThemeService {
 
-    @Autowired
+    @Resource
     private UserThemeMapper userThemeMapper;
 
-    public List<UserTheme> getAll() {
+    public List<UserThemeDO> getAll() {
         return userThemeMapper.getAll();
     }
 
-    public UserTheme getOne(Integer id) {
+    public UserThemeDO getOne(Long id) {
         return userThemeMapper.getOne(id);
     }
 
-    public void insert(UserTheme userTheme) {
+    public void insert(UserThemeDO userTheme) {
         userThemeMapper.insert(userTheme);
     }
 
-    public void update(UserTheme userTheme) {
+    public void update(UserThemeDO userTheme) {
         userThemeMapper.update(userTheme);
     }
 }
