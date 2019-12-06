@@ -1,6 +1,5 @@
 package com.markdown.api.controller;
 import com.markdown.api.domain.ThemeDO;
-import com.markdown.api.dto.UserThemeDTO;
 import com.markdown.api.response.Result;
 import com.markdown.api.service.ThemeService;
 import com.markdown.api.vo.ThemeDetailVO;

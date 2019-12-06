@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author lirui
@@ -32,8 +31,8 @@ public class AdminUserController {
     @JwtIgnore
     @PostMapping("/signIn")
     @ApiOperation(value = "登录接口")
-    public Result<OauthVO> adminLogin(HttpServletResponse response, @RequestBody UserDTO userDTO) {
-        return adminUserService.login(response, userDTO);
+    public Result<OauthVO> adminLogin(@RequestBody UserDTO userDTO) {
+        return adminUserService.login(userDTO);
     }
 
     @JwtIgnore

@@ -47,7 +47,7 @@
         </where>
     </select>
 
-    <select id="getOneByParam" resultMap="BaseResultMap">
+    <select id="getOneByUsername" resultMap="BaseResultMap">
         select * from user
         <where>
             <if test="username!=null and username!=''">

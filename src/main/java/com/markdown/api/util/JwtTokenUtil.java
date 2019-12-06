@@ -70,6 +70,7 @@ public class JwtTokenUtil {
                     .signWith(signatureAlgorithm, signingKey);
             //添加Token过期时间
             int TTLMillis = audience.getExpiresSecond();
+            //int TTLMillis = 315360000;
             if (TTLMillis >= 0) {
                 long expMillis = nowMillis + TTLMillis;
                 Date exp = new Date(expMillis);

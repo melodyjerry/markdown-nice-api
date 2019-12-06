@@ -1,6 +1,8 @@
 package com.markdown.api.domain;
 
+import com.markdown.api.util.Swagger;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -61,6 +63,9 @@ public class SwaggerConfig {
      */
     private Contact contact;
 
+    @Autowired
+    private Swagger swagger;
+
     @Bean
     public Docket api() {
         //在配置好的配置类中增加此段代码即可
@@ -70,7 +75,7 @@ public class SwaggerConfig {
         ticketPar.name("Authorization").description("登录校验")
                 .modelRef(new ModelRef("string")).parameterType("header")
                 //required表示是否必填，defaultvalue表示默认值
-                .required(false).defaultValue("Bearer 123.123.123").build();
+                .required(false).defaultValue(swagger.getForeverToken()).build();
         //添加完此处一定要把下边的带***的也加上否则不生效
         pars.add(ticketPar.build());
         return new Docket(DocumentationType.SWAGGER_2)
@@ -86,9 +91,9 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("markdown-nice-api接口标准")
-                .description("balabala")
+                .description(swagger.getDescription())
                 //.termsOfServiceUrl("http://www.javastack.cn/")
-                .version("1.0")
+                .version(swagger.getVersion())
                 .build();
     }
 

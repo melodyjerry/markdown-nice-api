@@ -18,6 +18,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/qiniu/**", "/themes/**", "/users/**", "/login", "/register", "/oauth/**", "/signIn").permitAll()
                     .anyRequest().authenticated()
                     .and()
+                    .csrf()
+                    .disable()
                 .formLogin()
                     //.loginPage("/login")
                     .permitAll()
