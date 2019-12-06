@@ -15,3 +15,10 @@ audience.expiresSecond=
 authconfigure.clientId=
 authconfigure.clientSecret=
 authconfigure.redirectUri=
+#security
+spring.security.user.name=
+spring.security.user.password=
+#swagger配置
+swagger.foreverToken=
+swagger.description=
+swagger.version=
