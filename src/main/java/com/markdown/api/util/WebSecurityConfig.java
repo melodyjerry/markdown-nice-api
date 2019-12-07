@@ -21,9 +21,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/qiniu/**", "/themes/**", "/users/**", "/login", "/register", "/oauth/**", "/signIn").permitAll()
                     .anyRequest().authenticated()
-                    //.formLogin()
+                    .and()
+                    //security登录页
+                    .formLogin()
                     //.loginPage("/login")
-                    //.permitAll()
+                    .permitAll()
                     .and()
                 .logout()
                     .permitAll();
