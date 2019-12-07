@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                    .antMatchers("/qiniu/**", "/themes/**", "/users/**", "/login", "/register", "/oauth/**", "/signIn").permitAll()
+                    .antMatchers("/qiniu/**", "/themes/**", "/users/**", "/login", "/register", "/oauth/**", "/signIn", "/test/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     //security登录页
