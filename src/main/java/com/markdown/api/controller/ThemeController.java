@@ -1,4 +1,5 @@
 package com.markdown.api.controller;
+import com.markdown.api.annotation.JwtIgnore;
 import com.markdown.api.domain.ThemeDO;
 import com.markdown.api.response.Result;
 import com.markdown.api.service.ThemeService;
@@ -26,6 +27,7 @@ public class ThemeController {
 
     @GetMapping("themes")
     @ApiOperation(value = "主题列表页接口")
+    @JwtIgnore
     public Result<List<ThemeVO>> themeQueryAll() {
         //return themeService.getAll();
         return null;
@@ -33,6 +35,7 @@ public class ThemeController {
 
     @GetMapping("themes/{id}")
     @ApiOperation(value = "主题详情页接口")
+    @JwtIgnore
     public Result<ThemeDetailVO> themeQueryOne(@PathVariable Long id) {
         //return  themeService.getOne(id);
         return null;
