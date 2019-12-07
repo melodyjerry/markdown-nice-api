@@ -25,7 +25,9 @@ public class ColorVO {
     @ApiModelProperty(value = "作者")
     private String author;
 
+    @ApiModelProperty(example = "" )
     private Date createTime;
 
+    @ApiModelProperty(example = "")
     private Date updateTime;
 }

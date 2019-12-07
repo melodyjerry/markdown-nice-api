@@ -14,15 +14,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors()
+                .and()
+                .csrf()
+                .disable()
                 .authorizeRequests()
                     .antMatchers("/qiniu/**", "/themes/**", "/users/**", "/login", "/register", "/oauth/**", "/signIn").permitAll()
                     .anyRequest().authenticated()
-                    .and()
-                    .csrf()
-                    .disable()
-                .formLogin()
+                    //.formLogin()
                     //.loginPage("/login")
-                    .permitAll()
+                    //.permitAll()
                     .and()
                 .logout()
                     .permitAll();
