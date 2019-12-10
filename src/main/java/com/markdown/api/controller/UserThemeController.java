@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 //@EnableSwagger2
 @Api(value = "userTheme", tags = "用户&&主题")
-@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserThemeController {
 
     @Autowired

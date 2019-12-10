@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.request.AuthRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -25,16 +24,13 @@ import java.io.IOException;
 @RestController
 @EnableSwagger2
 @Api(value = "Auth", tags = "第三方登录")
-@CrossOrigin(origins = "*", maxAge = 3600)
 public class RestAuthController {
 
     @Autowired
     private UserService userService;
 
     /**
-     * @param response
      * @param state    没有传值，只是适应版本
-     * @throws IOException
      */
     @GetMapping("oauth/render/github")
     @ApiOperation(value = "第三方入口", notes = "***")

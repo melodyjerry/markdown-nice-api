@@ -1,4 +1,4 @@
-package com.markdown.api.domain;
+package com.markdown.api.util;
 
 import com.google.gson.Gson;
 import com.markdown.api.util.QiniuProperties;
