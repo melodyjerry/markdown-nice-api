@@ -17,7 +17,6 @@ import java.util.List;
 @RestController
 @EnableSwagger2
 @Api(value = "user", tags = "用户模块")
-@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
 
     @Autowired
