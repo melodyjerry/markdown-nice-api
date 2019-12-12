@@ -19,6 +19,6 @@ authconfigure.redirectUri=
 spring.security.user.name=
 spring.security.user.password=
 #swagger配置
-swagger.foreverToken=
+swagger.foreverToken=(已配置到2069年）
 swagger.description=
 swagger.version=
