@@ -2,6 +2,7 @@ package com.markdown.api.service;
 
 import com.markdown.api.domain.ColorDO;
 import com.markdown.api.mapper.ColorMapper;
+import com.markdown.api.vo.ColorVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,5 +33,16 @@ public class ColorService {
         colorMapper.update(color);
     }
 
+    public ColorVO toVO(ColorDO colorDO) {
+        ColorVO colorVO = new ColorVO();
+        colorVO.setAuthor(colorDO.getAuthor());
+        colorVO.setCreateTime(colorDO.getCreateTime());
+        colorVO.setCss(colorDO.getCss());
+        colorVO.setId(colorDO.getId());
+        colorVO.setLongPic(colorDO.getLongPic());
+        colorVO.setThemeId(colorDO.getThemeId());
+        colorVO.setUpdateTime(colorDO.getUpdateTime());
+        return colorVO;
+    }
 
 }

@@ -33,8 +33,17 @@
     <select id="selectOne" resultMap="BaseResultMap">
         select * from color
         <where>
-            <if test="id != null">
+            <if test="id!=null">
                 id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getListByThemeId" resultMap="BaseResultMap">
+        select * from color
+        <where>
+            <if test="themeId!=null">
+                theme_id=#{themeId}
             </if>
         </where>
     </select>

@@ -2,6 +2,7 @@ package com.markdown.api.service;
 
 import com.markdown.api.domain.UserThemeDO;
 import com.markdown.api.mapper.UserThemeMapper;
+import com.markdown.api.vo.ThemeDetailVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,4 +32,5 @@ public class UserThemeService {
     public void update(UserThemeDO userTheme) {
         userThemeMapper.update(userTheme);
     }
+
 }

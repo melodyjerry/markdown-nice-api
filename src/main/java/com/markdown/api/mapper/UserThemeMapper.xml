@@ -31,6 +31,15 @@
         </where>
     </select>
 
+    <select id="queryListByUserId" resultMap="BaseResultMap">
+        select * from user_theme
+        <where>
+            <if test="userId!=null">
+                user_id=#{userId}
+            </if>
+        </where>
+    </select>
+
     <insert id="insert" parameterType="com.markdown.api.domain.UserThemeDO">
         insert into user_theme (user_id, theme_id)
         values (#{userId,jdbcType=INTEGER}, #{themeId,jdbcType=INTEGER})
