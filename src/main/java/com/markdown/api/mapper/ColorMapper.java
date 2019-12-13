@@ -18,4 +18,6 @@ public interface ColorMapper {
     void insert(ColorDO color);
 
     void update(ColorDO color);
+
+    List<ColorDO> getListByThemeId(@Param("themeId") Long themeId);
 }

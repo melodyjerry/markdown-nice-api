@@ -12,9 +12,11 @@ public interface UserThemeMapper {
 
     List<UserThemeDO> getAll();
 
-    UserThemeDO getOne(Long id);
+    UserThemeDO getOne(@Param("id") Long id);
 
     void insert(UserThemeDO userTheme);
 
     void update(UserThemeDO userTheme);
+
+    List<UserThemeDO> queryListByUserId(@Param("userId") Long userId);
 }

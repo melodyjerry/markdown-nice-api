@@ -16,25 +16,10 @@
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="getAll" resultMap="BaseResultMap">
-        select * from theme where 1=1
-        <if test="name!=null and name!=''">
-            and name=#{name}
-        </if>
-        <if test="englishName!=null and englishName!=''">
-            and english_name=#{englishName}
-        </if>
-        <if test="screenshot!=null and screenshot!=''">
-            and screenshot=#{screenshot}
-        </if>
-        <if test="author!=null and author!=''">
-            and author=#{author}
-        </if>
-        <if test="qrCode!=null and qrCode!=''">
-            and qr_code=#{qrCode}
-        </if>
-        <if test="description!=null and description!=''">
-            and description=#{description}
+    <select id="getAll" resultMap="BaseResultMap" parameterType="com.markdown.api.domain.ThemeDO">
+        select * from theme
+        <if test="start!=null">
+            LIMIT #{start}, #{count}
         </if>
     </select>
 

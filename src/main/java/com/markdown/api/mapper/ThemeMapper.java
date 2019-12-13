@@ -14,7 +14,7 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ThemeMapper {
 
-    List<ThemeDO> getAll();
+    List<ThemeDO> getAll(Integer start, Integer count);
 
     ThemeDO getOne(@Param("id") Long id);
 
