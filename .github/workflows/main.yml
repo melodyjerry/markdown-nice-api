@@ -23,4 +23,4 @@ jobs:
           git pull origin master
           mvn clean package
           cd target
-          nohup java -jar demo-0.0.1-SNAPSHOT.jar >> ./markdown-nice-api.log &
+          nohup java -jar demo-0.0.1-SNAPSHOT.jar >> /home/mdnice/logs/markdown-nice-api/markdown-nice-api.log &
