@@ -16,11 +16,11 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        command_timeout: 3m
+        command_timeout: 10m
         script: |
           sudo fuser -k -n tcp 8080
           cd /home/mdnice/markdown-nice-api
           git pull origin master
           mvn clean package
           cd target
-          nohup java -jar demo-0.0.1-SNAPSHOT.jar &
+          nohup java -jar demo-0.0.1-SNAPSHOT.jar >> /home/mdnice/logs/markdown-nice-api/markdown-nice-api.log &
